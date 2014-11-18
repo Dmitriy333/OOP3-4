@@ -1,0 +1,82 @@
+<list>
+  <sportpants>
+    <weigth>0.3</weigth>
+    <price>20.0</price>
+    <size>26</size>
+    <sex>Женские</sex>
+    <waistlineSize>60</waistlineSize>
+    <cling>Нормальное обтягивание</cling>
+    <stripes>Белые полоски по бокам</stripes>
+    <airInsertion>Без вентиляционных вставок</airInsertion>
+  </sportpants>
+  <trousers>
+    <weigth>0.3</weigth>
+    <price>20.0</price>
+    <size>26</size>
+    <sex>Женские</sex>
+    <waistlineSize>60</waistlineSize>
+    <cling>Нормальное обтягивание</cling>
+    <arrows>Есть стрелки для заглажки</arrows>
+    <narrowBottom>Зауживание снизу</narrowBottom>
+  </trousers>
+  <anorak>
+    <weigth>0.6</weigth>
+    <price>100.5</price>
+    <size>50</size>
+    <sex>Мужская</sex>
+    <sleeves>С рукавами</sleeves>
+    <typeOfLenght>Приталеная (маломерка)</typeOfLenght>
+    <filler>Пух</filler>
+    <hood>С капюшоном</hood>
+  </anorak>
+  <coat>
+    <weigth>0.5</weigth>
+    <price>300.0</price>
+    <size>46</size>
+    <sex>Женское</sex>
+    <sleeves>С рукавами</sleeves>
+    <typeOfLenght>Не маломерка</typeOfLenght>
+    <belt>С ремнём на талии</belt>
+    <pockets>Без карманов</pockets>
+  </coat>
+  <hat>
+    <weigth>0.25</weigth>
+    <price>70.0</price>
+    <size>46</size>
+    <sex>Мужская</sex>
+    <cling>Плотно сидит</cling>
+    <earsHide>Прикрывает уши</earsHide>
+    <visorDiameter>10</visorDiameter>
+    <concavity>Цилиндр (без вогнутости)</concavity>
+  </hat>
+  <cap>
+    <weigth>0.12</weigth>
+    <price>20.0</price>
+    <size>46</size>
+    <sex>Женская</sex>
+    <cling>Сидит свободно</cling>
+    <earsHide>Прикрывает уши</earsHide>
+    <stretching>Растягивается</stretching>
+    <elasticBand>Без резинки</elasticBand>
+  </cap>
+  <sandals>
+    <weigth>0.2</weigth>
+    <price>10.0</price>
+    <size>41</size>
+    <sex>Мужские</sex>
+    <material>Кожа</material>
+    <soleMaterial>Нубук</soleMaterial>
+    <fasteners>Застёжки на липучках</fasteners>
+    <supinator>Есть</supinator>
+  </sandals>
+  <sneakers>
+    <weigth>0.2</weigth>
+    <price>10.0</price>
+    <size>41</size>
+    <sex>Мужские</sex>
+    <material>Кожа</material>
+    <soleMaterial>Резиновая подошва</soleMaterial>
+    <shoelaceLength>60</shoelaceLength>
+    <airInsertion>Вентиляционные вставки</airInsertion>
+  </sneakers>
+</list>
