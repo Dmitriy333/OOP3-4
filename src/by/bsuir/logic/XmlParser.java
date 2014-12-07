@@ -59,7 +59,9 @@ public class XmlParser {
 		}finally{
 			try {
 				fs.close();
-				outWriter.close();
+				if(outWriter!= null){
+					outWriter.close();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
