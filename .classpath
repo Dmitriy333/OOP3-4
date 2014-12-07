@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="F:/Java Projects(философия java)/.__External Libraries/reflection/javassist-3.12.1.GA.jar"/>
 	<classpathentry kind="lib" path="F:/Java Projects(философия java)/.__External Libraries/reflection/openpojo-0.6.0.jar"/>
 	<classpathentry kind="lib" path="F:/Java Projects(философия java)/.__External Libraries/reflection/reflections-0.9.9-RC1-uberjar.jar"/>
+	<classpathentry kind="lib" path="F:/Java Projects(философия java)/.__External Libraries/xmlparserv2.jar/xmlparserv2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

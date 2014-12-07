@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import by.bsuir.logic.BinaryParser;
 import by.bsuir.logic.TextParser;
 import by.bsuir.logic.XmlParser;
+import by.bsuir.logic.xmlException;
 import by.bsuir.substances.abstr.Cloth;
 
 import javax.swing.DefaultComboBoxModel;
@@ -17,6 +18,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,6 +27,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
 
 import javax.swing.JButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -34,6 +37,9 @@ import javax.swing.JMenuItem;
 
 import org.reflections.Reflections;
 
+import javax.swing.JCheckBoxMenuItem;
+import javax.xml.transform.TransformerException;
+
 public class MainFraim {
 	private List<Cloth> clothes;
 	private void getSubclasses(){
@@ -41,7 +47,7 @@ public class MainFraim {
 		Reflections reflections = new Reflections("by.bsuir.substances");
 		Set<Class<? extends Cloth>> subTypes = reflections.getSubTypesOf(Cloth.class);
 		for (Class<? extends Cloth> class1 : subTypes) {
-			if(class1.getName().contains("by.bsuir.substances.clothes")){
+			if(!Modifier.isAbstract(class1.getModifiers())){
 				figures.add(class1.getName());	
 			}
 		}
@@ -81,6 +87,9 @@ public class MainFraim {
 	private JComboBox<Object> comboBox_2;
 	private JMenuItem menuItem_1;
 	private JMenuItem menuItem_2;
+	private JMenu mnSettings;
+	private JMenu menu_1;
+	private JCheckBoxMenuItem transformationMenu;
 
 	/**
 	 * Launch the application.
@@ -304,7 +313,12 @@ public class MainFraim {
 					if (userSelection == JFileChooser.APPROVE_OPTION) {
 					    File fileToSave = fileChooser.getSelectedFile();
 					    XmlParser xmlParser = new XmlParser();
-						xmlParser.saveToXml(fileToSave.getAbsolutePath(), clothes);
+					    if(transformationMenu.isSelected()){
+					    	xmlParser.saveToXml(fileToSave.getAbsolutePath(), clothes, true);
+					    }else{
+					    	xmlParser.saveToXml(fileToSave.getAbsolutePath(), clothes, false);
+					    }
+						
 					}
 			}
 		});
@@ -339,6 +353,15 @@ public class MainFraim {
 			}
 		});
 		menu.add(menuItem_1);
+		
+		mnSettings = new JMenu("Settings");
+		menuBar.add(mnSettings);
+		
+		menu_1 = new JMenu("\u041C\u043E\u0434\u0438\u0444\u0438\u0446\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435");
+		mnSettings.add(menu_1);
+		
+		transformationMenu = new JCheckBoxMenuItem("\u041C\u043E\u0434\u0438\u0444\u0438\u0446\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 XML");
+		menu_1.add(transformationMenu);
 		mntmBinary.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileopen = new JFileChooser();             
@@ -349,7 +372,6 @@ public class MainFraim {
 		            try {
 						clothes = binaryParser.readFromBinary(file.getAbsolutePath());
 					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 		    		initComboBox(comboBox_1, clothes);
@@ -366,9 +388,19 @@ public class MainFraim {
 		        if (ret == JFileChooser.APPROVE_OPTION) {
 		            File file = fileopen.getSelectedFile();
 		            XmlParser xmlParser = new XmlParser();
-		    		clothes = xmlParser.readFromXml(file.getAbsolutePath());
-		    		initComboBox(comboBox_1, clothes);
-		    		((Cloth)comboBox_1.getSelectedItem()).showInfo(labels, textFields);
+		            try {
+			            if(transformationMenu.isSelected()){
+							clothes = xmlParser.readFromXml(file.getAbsolutePath(), true);
+			            }else{
+			            	clothes = xmlParser.readFromXml(file.getAbsolutePath(), false);
+			            }
+			            initComboBox(comboBox_1, clothes);
+			    		((Cloth)comboBox_1.getSelectedItem()).showInfo(labels, textFields);
+		            } catch (TransformerException e1) {
+		        		JOptionPane.showMessageDialog(null, "Unable to read from this xml file", "Error", JOptionPane.PLAIN_MESSAGE);
+					} catch (xmlException e1) {
+		        		JOptionPane.showMessageDialog(null, "Unable to read from this xml file", "Error", JOptionPane.PLAIN_MESSAGE);
+					}
 		        }
 			}
 		});
@@ -387,7 +419,6 @@ public class MainFraim {
 			public void actionPerformed(ActionEvent e) {
 				Cloth cloth = (Cloth)comboBox_1.getSelectedItem();
 				cloth.showInfo(labels, textFields);
-//				/System.out.println(comboBox_1.getSelectedItem());
 			}
 		});
 		

@@ -50,7 +50,6 @@ public class TextParser {
 			Object object;
 			List<String> properties = null;
 			while (line != null) {
-				
 				if(line.contains("class")){
 					if(properties != null){
 						cloth.setInfo(properties);
@@ -72,6 +71,7 @@ public class TextParser {
 				}
 				line = br.readLine();
 			}
+			clothes.add(cloth);
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();

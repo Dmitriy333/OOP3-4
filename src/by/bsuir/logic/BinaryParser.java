@@ -9,11 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 import by.bsuir.substances.abstr.Cloth;
-
-
-
-
-
 public class BinaryParser {
 	public void saveToBinary(List<Cloth> clothes, String fileName) {
 		try {
